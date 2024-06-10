@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .border-1 {
+    border-width: 1px;
+  }
+}
+
+@layer components {
+  .field {
+    @apply py-1 px-2 text-lg font-medium outline-none bg-gray-100 rounded-sm;
+  }
+
+  .labels {
+    @apply text-lg font-semibold mb-1;
+  }
+}
