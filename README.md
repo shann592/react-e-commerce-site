@@ -1,8 +1,40 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React E-Commerce Website
 
-Currently, two official plugins are available:
+Welcome to our React-based E-Commerce dummy website! This project is built to showcase a simple yet functional online shopping experience. Below you'll find details about the technologies used, how to set up the project locally, and additional resources for further customization.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+## Tech Stack
+
+**Client:** React, Context API, TailwindCSS, React Router DOM, Lodash
+
+**Server:** Node, Express, MongoDB
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/shann592/react-e-commerce-site.git
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
