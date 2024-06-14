@@ -7,7 +7,7 @@ Welcome to our React-based E-Commerce dummy website! This project is built to sh
 
 ## Tech Stack
 
-**Client:** React, Context API, TailwindCSS, React Router DOM, Lodash
+**Client:** React, Context API, TailwindCSS, Lodash, Netlify, React Router, React Form, Zod, react-toastify.
 
 **Server:** Node, Express, MongoDB
 
