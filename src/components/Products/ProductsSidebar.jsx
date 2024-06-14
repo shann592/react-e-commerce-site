@@ -1,8 +1,9 @@
-import LinkWithIcon from '../NavBar/LinkWithIcon'
-import useData from '../../hooks/useData'
+import LinkWithIcon from "../NavBar/LinkWithIcon";
+import useData from "../../hooks/useData";
+import config from "../../config.json";
 
 function ProductsSidebar() {
-  const { data: categories, error } = useData('/category')
+  const { data: categories, error } = useData("/category");
   return (
     <aside className="py-2 px-5 rounded-[5px] bg-white">
       <h2 className="text-2xl mb-5">Category</h2>
@@ -15,12 +16,12 @@ function ProductsSidebar() {
               isSidebar
               linkTitle={c.name}
               link={`/products?category=${c.name}&page=1`}
-              emoji={`http://localhost:5000/category/${c.image}`}
+              emoji={`${config.backendURL}/category/${c.image}`}
               id={c._id}
             ></LinkWithIcon>
           ))}
       </div>
     </aside>
-  )
+  );
 }
-export default ProductsSidebar
+export default ProductsSidebar;

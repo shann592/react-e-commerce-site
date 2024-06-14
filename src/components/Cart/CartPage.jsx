@@ -1,44 +1,45 @@
-import { useState, useContext } from 'react'
-import UserContext from '../../contexts/userContext'
+import { useState, useContext } from "react";
+import UserContext from "../../contexts/userContext";
 
-import QuantityInput from '../SingleProduct/QuantityInput'
-import Table from '../common/Table'
-import { remove } from '../../assets'
-import { useEffect } from 'react'
-import CartContext from '../../contexts/cartContext'
-import { checkoutAPI } from '../../services/cartServices'
-import { ToastContainer, toast } from 'react-toastify'
+import QuantityInput from "../SingleProduct/QuantityInput";
+import Table from "../common/Table";
+import { remove } from "../../assets";
+import { useEffect } from "react";
+import CartContext from "../../contexts/cartContext";
+import { checkoutAPI } from "../../services/cartServices";
+import { ToastContainer, toast } from "react-toastify";
+import config from "../../config.json";
 function CartPage() {
-  const { user } = useContext(UserContext)
-  const { cart, removeFromCart, updateCart, setCart } = useContext(CartContext)
-  const [subtotal, setSubtotal] = useState(0)
+  const { user } = useContext(UserContext);
+  const { cart, removeFromCart, updateCart, setCart } = useContext(CartContext);
+  const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
-    let total = 0
+    let total = 0;
     cart.forEach((item) => {
-      total += item.product.price * item.quantity
-    })
+      total += item.product.price * item.quantity;
+    });
 
-    setSubtotal(total)
-  }, [cart])
+    setSubtotal(total);
+  }, [cart]);
 
   const checkout = () => {
-    const oldCart = [...cart]
-    setCart([])
+    const oldCart = [...cart];
+    setCart([]);
     checkoutAPI()
-      .then(() => toast.success('Order placed successfully.'))
+      .then(() => toast.success("Order placed successfully."))
       .catch(() => {
-        toast.error('Something went wrong!')
-        setCart(oldCart)
-      })
-  }
+        toast.error("Something went wrong!");
+        setCart(oldCart);
+      });
+  };
 
   return (
     <section className="flex items-center flex-col justify-center w-3/5 mx-auto py-8 px-12">
       <div className="flex items-center gap-4 mb-8">
         <img
           className="w-[80px] h-[80px] object-cover rounded-full object-center"
-          src={`http://localhost:5000/profile/${user?.profilePic}`}
+          src={`${config.backendURL}/profile/${user?.profilePic}`}
           alt="user profile"
         />
         <div>
@@ -46,7 +47,7 @@ function CartPage() {
           <p className="text-gray-500">Email: {user?.email}</p>
         </div>
       </div>
-      <Table headings={['Item', 'Price', 'Quantity', 'Total', 'Remove']}>
+      <Table headings={["Item", "Price", "Quantity", "Total", "Remove"]}>
         <tbody className="*:h-12 *:text-center *:even:bg-[#f5f5f5]">
           {cart.map(({ product, quantity }) => (
             <tr key={product._id}>
@@ -97,6 +98,6 @@ function CartPage() {
         Checkout
       </button>
     </section>
-  )
+  );
 }
-export default CartPage
+export default CartPage;

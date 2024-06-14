@@ -1,11 +1,12 @@
-import { NavLink } from 'react-router-dom'
-import { iphone, star, bascket } from '../../assets'
-import { useContext } from 'react'
-import CartContext from '../../contexts/cartContext'
-import UserContext from '../../contexts/userContext'
+import { NavLink } from "react-router-dom";
+import { iphone, star, bascket } from "../../assets";
+import config from "../../config.json";
+import { useContext } from "react";
+import CartContext from "../../contexts/cartContext";
+import UserContext from "../../contexts/userContext";
 function ProductCard({ product }) {
-  const { addToCart } = useContext(CartContext)
-  const { user } = useContext(UserContext)
+  const { addToCart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
   return (
     <article className="w-[275px] min-h-[300px] m-5 rounded-[12px] shadow-md bg-white overflow-hidden">
       <div className="border-[1px] w-full border-gray-100 h-48">
@@ -14,7 +15,7 @@ function ProductCard({ product }) {
           className="h-full w-full text-center border-[1px] border-b-[#e5e5e5]"
         >
           <img
-            src={`http://localhost:5000/products/${product?.images[0]}`}
+            src={`${config.backendURL}/products/${product?.images[0]}`}
             className="h-full w-full"
             alt="product image"
           />
@@ -46,6 +47,6 @@ function ProductCard({ product }) {
         </footer>
       </div>
     </article>
-  )
+  );
 }
-export default ProductCard
+export default ProductCard;

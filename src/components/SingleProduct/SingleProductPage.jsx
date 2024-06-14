@@ -1,19 +1,20 @@
-import { useContext, useState } from 'react'
-import QuantityInput from './QuantityInput'
-import { useParams } from 'react-router-dom'
-import useData from '../../hooks/useData'
-import { DefaultPageSkeleton } from '../common/DefaultPageSkeleton'
-import CartContext from '../../contexts/cartContext'
-import UserContext from '../../contexts/userContext'
+import { useContext, useState } from "react";
+import QuantityInput from "./QuantityInput";
+import { useParams } from "react-router-dom";
+import useData from "../../hooks/useData";
+import { DefaultPageSkeleton } from "../common/DefaultPageSkeleton";
+import CartContext from "../../contexts/cartContext";
+import UserContext from "../../contexts/userContext";
+import config from "../../config.json";
 
 function SingleProductPage() {
-  const { id } = useParams()
-  const { user } = useContext(UserContext)
-  const { addToCart } = useContext(CartContext)
-  const { data: product, error, isLoading } = useData(`/products/${id}`)
-  const [quantity, setQuantity] = useState(0)
+  const { id } = useParams();
+  const { user } = useContext(UserContext);
+  const { addToCart } = useContext(CartContext);
+  const { data: product, error, isLoading } = useData(`/products/${id}`);
+  const [quantity, setQuantity] = useState(0);
 
-  const [selectedImage, setSelectedImage] = useState(0)
+  const [selectedImage, setSelectedImage] = useState(0);
 
   return (
     <section className="flex items-center justify-center py-9 px-12">
@@ -25,13 +26,13 @@ function SingleProductPage() {
             <div className="flex flex-col flex-wrap gap-3 p-2 m-4">
               {product.images.map((image, index) => (
                 <img
-                  src={`http://localhost:5000/products/${image}`}
+                  src={`${config.backendURL}/products/${image}`}
                   alt={product.title}
                   onClick={() => setSelectedImage(index)}
                   className={
                     selectedImage === index
-                      ? 'w-20 h-20 object-cover rounded-[5px] cursor-pointer overflow-hidden scale-110 ease-in-out duration-200'
-                      : 'w-20 h-20 object-cover rounded-[5px] cursor-pointer overflow-hidden ease-in-out duration-200'
+                      ? "w-20 h-20 object-cover rounded-[5px] cursor-pointer overflow-hidden scale-110 ease-in-out duration-200"
+                      : "w-20 h-20 object-cover rounded-[5px] cursor-pointer overflow-hidden ease-in-out duration-200"
                   }
                   key={index}
                 />
@@ -39,7 +40,7 @@ function SingleProductPage() {
             </div>
             <img
               className="w-[600px] h-[600px] object-cover rounded-[10px] mb-1"
-              src={`http://localhost:5000/products/${product.images[selectedImage]}`}
+              src={`${config.backendURL}/products/${product.images[selectedImage]}`}
               alt={product.title}
             />
           </div>
@@ -64,7 +65,7 @@ function SingleProductPage() {
                 <button
                   className="px-4 py-2 text-lg font-medium border-none rounded-[5px] bg-[#6457f9] text-white cursor-pointer w-[140px] text-nowrap"
                   onClick={() => {
-                    addToCart(product, quantity)
+                    addToCart(product, quantity);
                   }}
                 >
                   Add to Cart
@@ -75,6 +76,6 @@ function SingleProductPage() {
         </>
       )}
     </section>
-  )
+  );
 }
-export default SingleProductPage
+export default SingleProductPage;
